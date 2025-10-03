@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -31,31 +30,32 @@ public class WinnerServiceImpl implements WinnerService {
 
     @Transactional
     @Override
-    public List<Winner> drawnWinners(Long roundId) {
+    public List<Winner> drawWinners(Long roundId) {
         LotteryRound round = lotteryRoundService.findById(roundId)
                 .orElseThrow(() -> new RuntimeException("Round not found"));
+
         if (round.getStatus() == Status.drawn) {
-            throw new IllegalStateException("Drawn winner already exists");
+            throw new IllegalStateException("Winners already drawn for this round");
         }
-        List<User> allUsers = userService.findAllUsers();
-        Collections.shuffle(allUsers);
 
-        int count = Math.min(round.getNumberOfWinner(), allUsers.size());
-        List<User> selected = allUsers.subList(0, count);
-
-        List<Winner> winners = new ArrayList<>();
-        for (User u : selected) {
-            Winner winner = new Winner();
-            winner.setUser(u);
-            winner.setLotteryRound(round);
-            winner.setWinDate(LocalDateTime.now());
-            winners.add(winnerRepository.save(winner));
+        List<User> allParticipants = userService.findAllUsers();
+        if (allParticipants.isEmpty()) {
+            throw new IllegalStateException("No participants available");
         }
+
+        Collections.shuffle(allParticipants);
+        User selected = allParticipants.get(0);
+
+        Winner winner = new Winner();
+        winner.setUser(selected);
+        winner.setLotteryRound(round);
+        winner.setWinDate(LocalDateTime.now());
+        winnerRepository.save(winner);
 
         round.setStatus(Status.drawn);
         lotteryRoundService.save(round);
 
-        return winners;
+        return List.of(winner);
     }
 
     @Override

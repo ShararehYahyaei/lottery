@@ -6,8 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface WinnerService {
-    @Transactional
-    List<Winner> drawnWinners(Long roundId);
 
+
+    @Transactional
+    List<Winner> drawWinners(Long roundId);
     List<Winner> getWinnersByRoundId(Long roundId);
 }
