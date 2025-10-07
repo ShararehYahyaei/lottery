@@ -1,6 +1,6 @@
 package org.example.loan.service.lotteryService;
 
-import org.example.loan.entity.LotteryRound;
+import org.example.loan.entity.Rund;
 import org.example.loan.repository.lotteryRoundRepository.LotteryRoundRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +17,12 @@ public class LotteryRoundServiceImpl implements LotteryRoundService {
 
 
     @Override
-    public List<LotteryRound> findAll() {
+    public List<Rund> findAll() {
         return lotteryRoundRepository.findAll();
     }
 
     @Override
-    public LotteryRound creaetLotteryRound(LotteryRound lotteryRound) {
-        return lotteryRoundRepository.save(lotteryRound);
+    public Rund creaetLotteryRound(Rund rundRound) {
+        return lotteryRoundRepository.save(rundRound);
     }
 }

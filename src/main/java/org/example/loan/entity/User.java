@@ -1,51 +1,29 @@
 package org.example.loan.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
+import org.example.loan.entity.baseEntity.BaseEntity;
+import org.example.loan.entity.enums.Role;
 
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "participant")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Table(name = "users")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class User extends BaseEntity {
+
     private String fullName;
     private String email;
     private LocalDate registeredAt;
+    private boolean isActive = true;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+    private String password;
+    private String phoneNumber;
+    private String userName;
+    private String creditCardNumber;
 
-    public User() {
-    }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public LocalDate getRegisteredAt() {
-        return registeredAt;
-    }
-
-    public void setRegisteredAt(LocalDate registeredAt) {
-        this.registeredAt = registeredAt;
-    }
 }

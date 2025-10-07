@@ -1,11 +1,11 @@
 package org.example.loan.service.lotteryService;
 
-import org.example.loan.entity.LotteryRound;
+import org.example.loan.entity.Rund;
 
 import java.util.List;
 
 public interface LotteryRoundService {
-    List<LotteryRound> findAll();
+    List<Rund> findAll();
 
-    LotteryRound creaetLotteryRound(LotteryRound lotteryRound);
+    Rund creaetLotteryRound(Rund rundRound);
 }

@@ -1,4 +1,4 @@
-package org.example.loan.entity;
+package org.example.loan.entity.enums;
 
 public enum Status {
     created,

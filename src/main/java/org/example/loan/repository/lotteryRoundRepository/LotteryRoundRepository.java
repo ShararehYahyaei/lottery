@@ -1,9 +1,9 @@
 package org.example.loan.repository.lotteryRoundRepository;
 
-import org.example.loan.entity.LotteryRound;
+import org.example.loan.entity.Rund;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LotteryRoundRepository extends JpaRepository<LotteryRound, Long> {
+public interface LotteryRoundRepository extends JpaRepository<Rund, Long> {
 }

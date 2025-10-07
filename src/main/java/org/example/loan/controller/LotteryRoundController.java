@@ -1,7 +1,7 @@
 package org.example.loan.controller;
 
 
-import org.example.loan.entity.LotteryRound;
+import org.example.loan.entity.Rund;
 import org.example.loan.service.lotteryService.LotteryRoundService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +19,13 @@ public class LotteryRoundController {
     }
 
     @PostMapping
-    public ResponseEntity<LotteryRound> createLotteryRound(@RequestBody LotteryRound lotteryRound) {
-        LotteryRound saved = lotteryRoundService.creaetLotteryRound(lotteryRound);
+    public ResponseEntity<Rund> createLotteryRound(@RequestBody Rund rundRound) {
+        Rund saved = lotteryRoundService.creaetLotteryRound(rundRound);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
     @GetMapping("/lottery")
-    public List<LotteryRound> getAllLotteryRound() {
+    public List<Rund> getAllLotteryRound() {
         return lotteryRoundService.findAll();
     }
 }
